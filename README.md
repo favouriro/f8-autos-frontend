@@ -1,16 +1,87 @@
-# React + Vite
+# F8 Autos - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React frontend for the F8 Autos mechanic and body shop platform. Built with React, Vite, and Axios.
 
-Currently, two official plugins are available:
+## Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Frontend Application: https://f8-autos-frontend.onrender.com
+Backend API: https://f8-autos-backend.onrender.com/api/
 
-## React Compiler
+## Project Overview
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+F8 Autos is a full-stack web application for a mechanic and body shop. Customers can browse cars for sale, view available services, and submit booking requests after registering and logging in.
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Browse cars for sale with images
+- Browse available services and pricing
+- User registration and login
+- JWT token-based authentication
+- Submit booking requests for services
+- View personal booking history
+- Responsive navbar with conditional rendering based on auth state
+- Protected routes that redirect to login if not authenticated
+
+## Tech Stack
+
+- **React** - Frontend framework
+- **Vite** - Build tool and development server
+- **React Router DOM** - Client-side routing
+- **Axios** - HTTP requests to the backend API
+- **JWT** - Authentication via tokens stored in localStorage
+
+## Project Structure
+```
+f8-autos-frontend/
+├── src/
+│   ├── components/        # Reusable components
+│   ├── pages/             # Page components
+│   │   ├── Login.jsx
+│   │   ├── Register.jsx
+│   │   ├── Cars.jsx
+│   │   ├── Services.jsx
+│   │   ├── Bookings.jsx
+│   │   └── CreateBooking.jsx
+│   ├── services/
+│   │   └── api.js         # All API calls to Django backend
+│   ├── AuthContext.jsx    # Global authentication state
+│   ├── App.jsx            # Root component and routing
+│   └── main.jsx           # Entry point
+├── public/
+├── index.html
+└── package.json
+```
+
+
+The app will be available at http://localhost:5173
+
+## How It Works
+
+### Authentication Flow
+1. User registers or logs in via the form
+2. Backend returns a JWT access token
+3. Token is stored in localStorage
+4. Every subsequent API request includes the token in the Authorization header
+5. AuthContext makes the logged in user available to all components
+
+### API Integration
+All API calls are centralised in `src/services/api.js`. This means if the backend URL changes, only one file needs updating.
+
+### Protected Routes
+Pages like Bookings and Create Booking check if a user is logged in via AuthContext. If not, the user is automatically redirected to the login page.
+
+## Deployment
+
+The frontend is deployed as a Static Site on Render with the following configuration:
+
+- **Build Command:** `npm install && npm run build`
+- **Publish Directory:** `dist`
+- **Environment Variable:** `VITE_API_URL` set to the deployed backend URL
+
+## Environment Variables
+
+| Variable | Description |
+|----------|-------------|
+| VITE_API_URL | Base URL of the Django backend API |
+```
+
