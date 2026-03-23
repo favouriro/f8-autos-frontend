@@ -29,7 +29,14 @@ const Cars = () => {
             ) : (
                 <div>
                     {cars.map(car => (
-                        <div key={car.id} style={{ border: '1px solid #ccc', margin: '10px', padding: '10px' }}>
+                        <div key={car.id} style={{ border: '1px solid #ccc', margin: '10px', padding: '10px', borderRadius: '8px' }}>
+                            {car.image_url && (
+                                <img
+                                    src={car.image_url}
+                                    alt={`${car.year} ${car.make} ${car.model}`}
+                                    style={{ width: '100%', maxHeight: '200px', objectFit: 'cover', borderRadius: '4px' }}
+                                />
+                            )}
                             <h3>{car.year} {car.make} {car.model}</h3>
                             <p>Price: £{car.price}</p>
                             <p>Mileage: {car.mileage} miles</p>
