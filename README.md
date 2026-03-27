@@ -83,5 +83,16 @@ The frontend is deployed as a Static Site on Render with the following configura
 | Variable | Description |
 |----------|-------------|
 | VITE_API_URL | Base URL of the Django backend API |
-```
+``
+## AI Use Acknowledgement
+
+Generative AI was used throughout the development 
+of this project in the following ways:
+
+- **Planning** — helping scope the application features
+- **Guidance** — Explanations of Django and React concepts 
+  as they were implemented, including models, serializers, ViewSets, 
+  React hooks, and JWT authentication flow
+- **Debugging** — identifying and explaining errors such as CORS 
+  misconfigurations, dependency conflicts in requirements.txt etc
 
